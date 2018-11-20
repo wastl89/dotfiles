@@ -37,7 +37,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -theme rofi -show run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -226,7 +226,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -236,9 +236,12 @@ mode "$mode_system" {
 bindsym $mod+Shift+e mode "$mode_system"
 
 #Exec my aplications
+exec --no-startup-id dockd --daemon
+exec nm-applet
+
 exec_always feh --bg-scale /home/wastl/Pictures/wallpaper.png
-exec /home/wastl/.screenlayout/dualScreen.sh
-exec compton
+#exec /home/wastl/.screenlayout/dualScreen.sh
+#exec compton
 
 # Specific window configuration
 for_window    [window_role="pop-up"]         floating enable
